@@ -15,9 +15,9 @@ public class GestorDeReservas {
         this.hospedes = hospedes;
     }
 
-    // Méodo para realizar a tarefa (verificação da sua role)
+    // Méodo para realizar a tarefa
     public Reserva realizarReserva(int idHospede, int idQuarto, LocalDate checkin, LocalDate checkout, String tipoUsuario) {
-        // Verifica se é funcionário ou gestor
+        // verificação da role (funcionario ou gestor)
         if (!tipoUsuario.equalsIgnoreCase("funcionario") && !tipoUsuario.equalsIgnoreCase("gestor")) {
             throw new IllegalArgumentException("Apenas funcionários e gestores podem realizar reservas.");
         }
@@ -41,8 +41,8 @@ public class GestorDeReservas {
         Reserva novaReserva = new Reserva(reservas.size() + 1, quarto, checkin, checkout);
         reservas.add(novaReserva);
 
-        // Atualizar o estado do quarto para ocupado
-        quarto.ocupar();
+        // Confirmar a reserva imediatamente
+        novaReserva.confirmarReserva();
 
         System.out.println("Reserva #" + novaReserva.getIdReserva() + " realizada com sucesso por um " + tipoUsuario);
 
