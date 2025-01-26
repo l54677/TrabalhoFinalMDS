@@ -9,7 +9,7 @@ public class Reserva {
     private LocalDate checkin;
     private LocalDate checkout;
     private String status;
-    
+
     public Reserva(int idReserva, Quarto quarto, LocalDate checkin, LocalDate checkout) {
         this.idReserva = idReserva;
         this.quarto = quarto;
