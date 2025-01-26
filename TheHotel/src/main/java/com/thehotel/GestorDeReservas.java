@@ -69,4 +69,30 @@ public class GestorDeReservas {
         }
         return null;
     }
+
+    public void cancelarReserva(int idReserva, String tipoUtilizador) {
+        // Verificar a role (funcionario ou gestor)
+        if (!tipoUtilizador.equalsIgnoreCase("funcionário") && !tipoUtilizador.equalsIgnoreCase("gestor")) {
+            throw new IllegalArgumentException("Apenas funcionários e gestores podem cancelar reservas.");
+        }
+
+        Reserva reservaParaCancelar = null;
+        for (Reserva r : reservas) {
+            if (r.getIdReserva() == idReserva) {
+                reservaParaCancelar = r;
+                break;
+            }
+        }
+
+        if (reservaParaCancelar == null) {
+            throw new IllegalArgumentException("Reserva com ID " + idReserva + " não encontrada.");
+        }
+
+        Quarto quarto = reservaParaCancelar.getQuarto();
+        quarto.libertar();
+
+        reservas.remove(reservaParaCancelar);
+
+        System.out.println("Reserva #" + idReserva + " cancelada com sucesso por um " + tipoUtilizador);
+    }
 }
