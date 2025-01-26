@@ -100,4 +100,4 @@ public class GestorDeReservas {
         System.out.println("Reserva #" + idReserva + " cancelada com sucesso por um " + tipoUtilizador);
     }
 }
-}
+
