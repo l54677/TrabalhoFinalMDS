@@ -53,9 +53,11 @@ public class Reserva {
             quarto.ocupar();
             System.out.println("Reserva #" + idReserva + " confirmada para o quarto " + quarto.getNumero());
         } else {
-            System.out.println("Erro: O quarto " + quarto.getNumero() + " já está ocupado.");
+            throw new IllegalStateException("Erro: O quarto " + quarto.getNumero() + " já está ocupado.");
         }
     }
+
+
 
     @Override
     public String toString() {
