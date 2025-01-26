@@ -41,7 +41,7 @@ class GestorDeReservasTest {
         assertNotNull(reserva);
         assertEquals(1, reserva.getIdReserva());
         assertEquals(101, reserva.getQuarto().getNumero());
-        assertEquals("Confirmada", reserva.getStatus());
+            assertEquals("Confirmada", reserva.getStatus());
         assertTrue(reserva.getQuarto().isOcupado());
     }
 
