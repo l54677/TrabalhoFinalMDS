@@ -69,4 +69,35 @@ public class GestorDeReservas {
         }
         return null;
     }
+    // Método para cancelar uma reserva
+    public void cancelarReserva(int idReserva, String tipoUtilizador) {
+        // verifica a role (funcionario ou gestor)
+        if (!tipoUtilizador.equalsIgnoreCase("funcionário") && !tipoUtilizador.equalsIgnoreCase("gestor")) {
+            throw new IllegalArgumentException("Apenas funcionários e gestores podem cancelar reservas.");
+        }
+
+        // Procura a reserva pelo idReserva
+        Reserva reservaParaCancelar = null;
+        for (Reserva r : reservas) {
+            if (r.getIdReserva() == idReserva) {
+                reservaParaCancelar = r;
+                break;
+            }
+        }
+
+        // caso a reserva nao seja encontrada
+        if (reservaParaCancelar == null) {
+            throw new IllegalArgumentException("Reserva com ID " + idReserva + " não encontrada.");
+        }
+
+        // atualiza o estado do quarto (disponivel/indesponivel)
+        Quarto quarto = reservaParaCancelar.getQuarto();
+        quarto.libertar();
+
+        // Remove a reserva da lista
+        reservas.remove(reservaParaCancelar);
+
+        System.out.println("Reserva #" + idReserva + " cancelada com sucesso por um " + tipoUtilizador);
+    }
+}
 }
