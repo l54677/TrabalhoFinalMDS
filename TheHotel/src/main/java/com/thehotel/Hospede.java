@@ -23,7 +23,7 @@ public class Hospede {
     public String getEmail() {
         return email;
     }
-    
+
     @Override
     public String toString() {
         return "Hóspede{" +
